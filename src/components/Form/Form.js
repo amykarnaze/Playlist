@@ -8,7 +8,7 @@ class Form extends Component {
       songName: '',
       artistName: '',
       link: '',
-      id: '',
+      id: Date.now(),
       error: ''
     }
   }
@@ -16,7 +16,21 @@ class Form extends Component {
   changeHandler = (event) => {
     event.preventDefault()
     this.setState({[event.target.name]: event.target.value});
+  }
 
+  clearInputs = () => {
+    this.setState({songName: '', artistName: '', link: '', id: ''})
+  }
+
+  submitSong = (event) => {
+    event.preventDefault()
+    const songName = this.state.songName
+    const artistName = this.state.artistName
+    const link = this.state.link
+    const id = this.state.id
+    const song = {songName, artistName, link, id}
+    this.props.addSong(song)
+    this.clearInputs();
   }
 
   render() { 
@@ -47,6 +61,7 @@ class Form extends Component {
           value={this.state.link}
         />
         <button className="button" type="submit"
+          onClick={this.submitSong}
           >Add Song</button>
       </section>
     )
