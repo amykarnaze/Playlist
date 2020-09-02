@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './App.css';
 import SongController from '../SongController/SongController';
 import Songs from '../Songs/Songs';
+import Form from '../Form/Form';
 import { fetchSongs } from '../../Api.js'
 
 class App extends Component {
@@ -26,6 +27,7 @@ class App extends Component {
           <h1>Turing Playlist</h1>
         </header>
         <Songs songQueue={this.state.songQueue} />
+        <Form />
         <div className="App-background">
           <main>
           </main>
