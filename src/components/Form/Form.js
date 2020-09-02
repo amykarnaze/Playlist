@@ -5,8 +5,18 @@ class Form extends Component {
   constructor(props) {
     super(props);
     this.state = {
-
+      songName: '',
+      artistName: '',
+      link: '',
+      id: '',
+      error: ''
     }
+  }
+
+  changeHandler = (event) => {
+    event.preventDefault()
+    this.setState({[event.target.name]: event.target.value});
+
   }
 
   render() { 
@@ -16,20 +26,28 @@ class Form extends Component {
           type="text"
           id="songName"
           name="songName"
+          placeholder="song name"
+          onChange={this.changeHandler}
+          value={this.state.songName}
         /> 
         <input className="artist-name"
           type="text"
           id="artistName"
           name="artistName"
-          placeholder="name"
+          placeholder="artist name"
+          onChange={this.changeHandler}
+          value={this.state.artistName}
         />
         <input className="link"
           type="text"
           id="link"
           name="link"
           placeholder="link"
+          onChange={this.changeHandler}
+          value={this.state.link}
         />
-        <button type="submit">Add Song</button>
+        <button className="button" type="submit"
+          >Add Song</button>
       </section>
     )
   
