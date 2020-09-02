@@ -19,6 +19,9 @@ class App extends Component {
     .catch(error => alert(error.message))
   }
 
+  addSong = (song) => {
+    this.setState({songQueue: this.state.songQueue.concat(song)})
+  }
 
   render() {
     return (
@@ -27,7 +30,7 @@ class App extends Component {
           <h1>Turing Playlist</h1>
         </header>
         <Songs songQueue={this.state.songQueue} />
-        <Form />
+        <Form addSong={this.addSong}/>
         <div className="App-background">
           <main>
           </main>
