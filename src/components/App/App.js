@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import './App.css';
 import SongController from '../SongController/SongController';
+import Songs from '../Songs/Songs';
+import { fetchSongs } from '../../Api.js'
 
 class App extends Component {
   constructor() {
@@ -10,6 +12,12 @@ class App extends Component {
     }
   }
 
+  componentDidMount = async () => {
+    await fetchSongs()
+    .then(data => {this.setState({songQueue: data})})
+    .catch(error => alert(error.message))
+  }
+
 
   render() {
     return (
@@ -17,6 +25,7 @@ class App extends Component {
         <header className="App-header">
           <h1>Turing Playlist</h1>
         </header>
+        <Songs songQueue={this.state.songQueue} />
         <div className="App-background">
           <main>
           </main>
